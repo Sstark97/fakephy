@@ -13,7 +13,7 @@ export const useGiphy = <T>(ref: RefObject<T>) => {
   
     useEffect(() => {
       const loadingGifts = async () => {
-        const response = await api.get(`/gifs/search?q=${gifToSearch}`)
+        const response = await api.get(`/gifs/search?q=${gifToSearch}&limit=20`)
         const { data } = response;
         handleChangeGifsInContext(data.data)
       }
