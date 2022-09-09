@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import api from './api';
+import Layout from './containers/Layout';
+import api from '@api/index';
 
 function App() {
   const [gifs, setGifts] = useState<any[]>()
@@ -15,11 +16,11 @@ function App() {
   }, [])
 
   return (
-    <div className="h-screen grid place-content-center">
+    <Layout>
       {gifs !== undefined && 
         <img src={gifs[0].images.original.url} alt={gifs[0].title} />
       }
-    </div>
+    </Layout>
   )
 }
 
