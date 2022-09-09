@@ -1,18 +1,20 @@
 import { FC } from "react";
+import Searcher from "@components/Searcher";
+import AppProvider from "@context/AppProvider";
 import { ChildrenProps } from "../types";
 
-const Layout: FC<ChildrenProps> = ({children}) => {
+const Layout: FC<ChildrenProps> = ({ children }) => {
   return (
-    <div className="h-screen">
-        <header>
-
+    <AppProvider>
+      <div className="h-screen bg-neutral-900">
+        <header className="h-1/5">
+          <Searcher />
         </header>
 
-        <main>
-            {children}
-        </main>
-    </div>
-  )
-}
+        <main className="h-4/5">{children}</main>
+      </div>
+    </AppProvider>
+  );
+};
 
-export default Layout
+export default Layout;

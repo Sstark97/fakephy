@@ -8,6 +8,7 @@ const getAlliases = () => {
     '@assets': resolve('src/assets'),
     '@components': resolve('src/components'),
     '@containers': resolve('src/containers'),
+    '@context': resolve('src/context'),
     '@api': resolve('src/api'),
     '@hooks': resolve('src/hooks'),
   }
