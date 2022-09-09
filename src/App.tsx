@@ -1,13 +1,24 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
+import api from './api';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [gifs, setGifts] = useState<any[]>()
+
+  useEffect(() => {
+    const loadingGifts = async () => {
+      const response = await api.get('/gifs/search?q=marvel')
+      const { data } = response;
+      setGifts(data.data)
+    }
+
+    loadingGifts()
+  }, [])
 
   return (
     <div className="h-screen grid place-content-center">
-      <h1>Hola</h1>
-      <p>{count}</p>
-      <button className='rounded bg-red-500 py-2 px-4 shadow-blue-600' onClick={() => {setCount(count + 1)}}>Aumenta</button>
+      {gifs !== undefined && 
+        <img src={gifs[0].images.original.url} alt={gifs[0].title} />
+      }
     </div>
   )
 }
