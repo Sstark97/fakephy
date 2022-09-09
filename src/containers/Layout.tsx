@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Banner from "@components/Banner";
 import Searcher from "@components/Searcher";
 import AppProvider from "@context/AppProvider";
 import { ChildrenProps } from "../types";
@@ -6,8 +7,9 @@ import { ChildrenProps } from "../types";
 const Layout: FC<ChildrenProps> = ({ children }) => {
   return (
     <AppProvider>
-      <div className="h-full bg-neutral-900">
-        <header className="h-1/5">
+      <div className=" container mx-auto h-full bg-neutral-900">
+        <header className="h-1/5 flex flex-col">
+          <Banner />
           <Searcher />
         </header>
 
