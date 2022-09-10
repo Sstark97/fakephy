@@ -1,5 +1,6 @@
-import { useRef, useEffect } from "react";
-import { useGiphy, useGlobalContext } from "@hooks/index";
+import { useRef } from "react";
+import { useGiphy } from "@hooks/index";
+import { ReactComponent as SearchIcon } from "@assets/search-icon.svg";
 
 const Searcher = () => {
   const gifRef = useRef<HTMLInputElement>(null);
@@ -9,11 +10,16 @@ const Searcher = () => {
   return (
     <div className="flex justify-center items-center h-1/2 py-3">
       <input
-        className="w-4/5 h-full placeholder:text-center valid:px-3 placeholder:text-slate-400"
+        className="w-3/4 h-full placeholder:text-center valid:px-3 placeholder:text-slate-400 rounded-l-lg"
         type="text"
         placeholder="Search a Gif..."
-        onChange={handleChangeGifs}
+        ref={gifRef}
       />
+      <button className="bg-purple-500 h-full p-3 rounded-r-lg
+
+" onClick={handleChangeGifs}>
+        <SearchIcon/>
+      </button>
     </div>
   );
 };
