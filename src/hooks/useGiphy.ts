@@ -7,17 +7,15 @@ export const useGiphy = (ref: RefObject<HTMLInputElement>) => {
   const [gifToSearch, setGiftToSearch] = useState<string>('');
   const [page, setPage] = useState<number>(0);
   const [count, setCount]  = useState<number>(0);
-  const [result, setResult]  = useState<number>(0);
-  const { gifs, handleChangeGifsInContext }: AppState = useGlobalContext();
+  const { gifs, result, handleChangeGifsInContext, handleChangeResultInContext }: AppState = useGlobalContext();
 
   const loadingGifts = async () => {
     const endPoint: string = gifToSearch === '' ? 'trending?' : `search?q=${gifToSearch}&`;
     const response = await api.get(`/gifs/${endPoint}offset=${page}`);
     const { data } = response;
-    console.log(data)
     handleChangeGifsInContext(data.data)
     setCount(data.pagination.count)
-    setResult(data.pagination.total_count)
+    handleChangeResultInContext(data.pagination.total_count)
   }
 
   const handlechangePage = (newPage: number) => {
