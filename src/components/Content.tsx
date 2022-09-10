@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, FC } from "react";
+import { ContentProps } from "../types";
 
-const Content = ({ src, alt }: any) => {
+const Content: FC<ContentProps> = ({ src, alt }) => {
   const [loaded, setLoaded] = useState(false);
 
   return (

@@ -6,11 +6,25 @@ export interface AppState {
     handleChangeGifsInContext: (search: Gif[]) => void;
 }
 
+// Hooks 
+export interface GifHook {
+    handleChangeGifs: () => void;
+    gifs: Gif[] | undefined;
+}
 
 // Components
 export interface ChildrenProps {
     children: ReactNode;
 };
+
+export interface ContentListProps {
+    content: Gif[];
+}
+
+export interface ContentProps {
+    src: string;
+    alt: string;
+}
 
 // Objects
 export interface Original {

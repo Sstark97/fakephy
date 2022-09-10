@@ -1,17 +1,15 @@
-import { useMemo } from 'react';
 import ContentList from '@components/ContentList';
-import { useGlobalContext } from '@hooks/index';
-import { AppState } from '../types';
+import { useGiphy } from '@hooks/index';
+import { GifHook } from '../types';
 
 const Main = () => {
-  const { gifs }:AppState = useGlobalContext();
-  const content = useMemo(() => gifs, [gifs]);
+  const { gifs }:GifHook = useGiphy();
 
   return (
       <>
         {gifs !== undefined && gifs.length !== 0 ?
-          <ContentList content={content} />
-          : <p className='text-white'>Search a gif</p>
+          <ContentList content={gifs} />
+          : <p className='text-white text-center'>Search a gif</p>
         }
       </>
   )
