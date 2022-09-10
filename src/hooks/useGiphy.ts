@@ -4,12 +4,19 @@ import { AppState } from '../types';
 import api from '@api';
 
 export const useGiphy = (ref: RefObject<HTMLInputElement>) => {
-  const [gifToSearch, setGiftToSearch] = useState<string>('marvel')
+  const [gifToSearch, setGiftToSearch] = useState<string>('')
   const { gifs, handleChangeGifsInContext }: AppState = useGlobalContext();
+
+  const loadingGifts = async () => {
+    const endPoint: string = gifToSearch === '' ? 'trending?' : `search?q=${gifToSearch}&`;
+    const response = await api.get(`/gifs/${endPoint}limit=20`)
+    const { data } = response;
+    handleChangeGifsInContext(data.data)
+  }
 
   const handleChangeGifs = () => {
     if (ref.current) {
-      const searchValue = ref.current.value;
+      const searchValue = ref.current.value.toLocaleLowerCase();
       setGiftToSearch(searchValue)
       ref.current.blur();
       ref.current.value = "";
@@ -19,11 +26,6 @@ export const useGiphy = (ref: RefObject<HTMLInputElement>) => {
   const content = useMemo(() => gifs, [gifs]);
 
   useEffect(() => {
-    const loadingGifts = async () => {
-      const response = await api.get(`/gifs/search?q=${gifToSearch}&limit=20`)
-      const { data } = response;
-      handleChangeGifsInContext(data.data)
-    }
     loadingGifts()
   }, [gifToSearch])
 

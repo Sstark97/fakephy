@@ -18,7 +18,7 @@ const Searcher = () => {
         className="bg-purple-500 h-full p-3 rounded-r-lg"
         onClick={handleChangeGifs}
       >
-        <SearchIcon />
+        <SearchIcon className="w-full h-full"/>
       </button>
     </div>
   );
