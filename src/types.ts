@@ -9,7 +9,11 @@ export interface AppState {
 // Hooks 
 export interface GifHook {
     handleChangeGifs: () => void;
+    handlechangePage: (newPage: number) => void;
     gifs: Gif[] | undefined;
+    count: number;
+    result: number;
+    page: number;
 }
 
 // Components
