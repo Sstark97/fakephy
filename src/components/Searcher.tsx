@@ -9,7 +9,7 @@ const Searcher = () => {
   return (
     <div className="flex justify-center items-center h-1/2 py-3">
       <input
-        className="w-3/4 h-full placeholder:text-center valid:px-3 placeholder:text-slate-400 rounded-l-lg"
+        className="w-3/4 h-full xl:w-9/12 placeholder:text-center valid:px-3 placeholder:text-slate-400 rounded-l-lg"
         type="text"
         placeholder="Search a Gif..."
         ref={gifRef}

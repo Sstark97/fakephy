@@ -1,11 +1,11 @@
-import { useState, useEffect, RefObject } from 'react';
+import { useState, useEffect, useMemo, RefObject } from 'react';
 import { useGlobalContext } from '@hooks/index';
-import { Gif, AppState } from '../types';
+import { AppState } from '../types';
 import api from '@api';
 
 export const useGiphy = (ref: RefObject<HTMLInputElement>) => {
   const [gifToSearch, setGiftToSearch] = useState<string>('marvel')
-  const { handleChangeGifsInContext }: AppState = useGlobalContext();
+  const { gifs, handleChangeGifsInContext }: AppState = useGlobalContext();
 
   const handleChangeGifs = () => {
     if (ref.current) {
@@ -14,7 +14,9 @@ export const useGiphy = (ref: RefObject<HTMLInputElement>) => {
       ref.current.blur();
       ref.current.value = "";
     }
-  }
+  };
+
+  const content = useMemo(() => gifs, [gifs]);
 
   useEffect(() => {
     const loadingGifts = async () => {
@@ -22,11 +24,11 @@ export const useGiphy = (ref: RefObject<HTMLInputElement>) => {
       const { data } = response;
       handleChangeGifsInContext(data.data)
     }
-
     loadingGifts()
   }, [gifToSearch])
 
   return {
-    handleChangeGifs
+    handleChangeGifs,
+    gifs: content
   }
 };
