@@ -6,5 +6,7 @@ import {
 
 export const context = createContext<AppState>({
     gifs: [] as Gif[],
-    handleChangeGifsInContext: () => { }
+    result: 0,
+    handleChangeGifsInContext: () => {},
+    handleChangeResultInContext: () => {}
 });

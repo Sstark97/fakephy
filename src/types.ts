@@ -3,13 +3,19 @@ import { ReactNode } from "react";
 // Context
 export interface AppState {
     gifs: Gif[] | undefined;
+    result: number;
     handleChangeGifsInContext: (search: Gif[]) => void;
+    handleChangeResultInContext: (newResult: number) => void;
 }
 
 // Hooks 
 export interface GifHook {
     handleChangeGifs: () => void;
+    handlechangePage: (newPage: number) => void;
     gifs: Gif[] | undefined;
+    count: number;
+    result: number;
+    page: number;
 }
 
 // Components
