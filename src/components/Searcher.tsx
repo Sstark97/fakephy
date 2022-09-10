@@ -6,7 +6,6 @@ const Searcher = () => {
   const gifRef = useRef<HTMLInputElement>(null);
   const { handleChangeGifs } = useGiphy(gifRef);
 
-
   return (
     <div className="flex justify-center items-center h-1/2 py-3">
       <input
@@ -15,10 +14,11 @@ const Searcher = () => {
         placeholder="Search a Gif..."
         ref={gifRef}
       />
-      <button className="bg-purple-500 h-full p-3 rounded-r-lg
-
-" onClick={handleChangeGifs}>
-        <SearchIcon/>
+      <button
+        className="bg-purple-500 h-full p-3 rounded-r-lg"
+        onClick={handleChangeGifs}
+      >
+        <SearchIcon />
       </button>
     </div>
   );
