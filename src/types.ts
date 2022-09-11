@@ -6,10 +6,12 @@ export interface AppState {
     search: string;
     page: number;
     count: number;
+    maxPage: number;
     handleChangeResultInContext: (newResult: number) => void;
     handleChangeSearchInContext: (newSearch: string) => void;
     handleChangePageInContext: (newPage: number) => void;
     handleChangeCountInContext: (newCount: number) => void;
+    handleChangeMaxPageInContext: (newMaxPage: number) => void;
 }
 
 // Hooks 

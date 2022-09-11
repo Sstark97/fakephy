@@ -9,8 +9,10 @@ export const context = createContext<AppState>({
     search: "",
     page: 0,
     count: 0,
+    maxPage: 0,
     handleChangeResultInContext: () => {},
     handleChangeSearchInContext: () => {},
     handleChangePageInContext: () => {},
     handleChangeCountInContext: () => {},
+    handleChangeMaxPageInContext: () => {},
 });

@@ -7,6 +7,7 @@ const AppProvider: FC<ChildrenProps> = ({ children }) => {
   const [result, setResult] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
+  const [maxPage, setMaxPage] = useState<number>(0);
   const [search, setSearch] = useState<string>("marvel");
 
   const handleChangeResultInContext = (newResult: number) => setResult(newResult);
@@ -17,6 +18,8 @@ const AppProvider: FC<ChildrenProps> = ({ children }) => {
 
   const handleChangeCountInContext = (newCount: number) => setCount(newCount);
 
+  const handleChangeMaxPageInContext = (newMaxPage: number) => setMaxPage(newMaxPage);
+
   return (
     <Provider
       value={{
@@ -24,10 +27,12 @@ const AppProvider: FC<ChildrenProps> = ({ children }) => {
         search,
         page,
         count,
+        maxPage,
         handleChangeSearchInContext,
         handleChangeResultInContext,
         handleChangePageInContext,
         handleChangeCountInContext,
+        handleChangeMaxPageInContext,
       }}
     >
       {children}
