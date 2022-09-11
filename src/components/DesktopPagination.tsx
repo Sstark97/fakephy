@@ -1,8 +1,8 @@
-import { useGiphy } from "@hooks/index";
+import { useGlobalContext } from "@hooks/index";
 import PageButtons from "./PageButtons";
 
 const DesktopPagination = () => {
-  const { count, result } = useGiphy();
+  const { count, result } = useGlobalContext();
   return (
     <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
       <div>

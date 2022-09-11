@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useGiphy, useGiphySWR } from "@hooks/index";
+import { useGiphySWR } from "@hooks/index";
 import { ReactComponent as SearchIcon } from "@assets/search-icon.svg";
 
 const Searcher = () => {

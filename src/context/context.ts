@@ -5,10 +5,12 @@ import {
 } from "../types";
 
 export const context = createContext<AppState>({
-    gifs: [] as Gif[],
     result: 0,
     search: "",
-    handleChangeGifsInContext: () => {},
+    page: 0,
+    count: 0,
     handleChangeResultInContext: () => {},
-    handleChangeSearchInContext: () => {}
+    handleChangeSearchInContext: () => {},
+    handleChangePageInContext: () => {},
+    handleChangeCountInContext: () => {},
 });
