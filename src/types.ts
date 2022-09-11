@@ -4,8 +4,10 @@ import { ReactNode } from "react";
 export interface AppState {
     gifs: Gif[] | undefined;
     result: number;
+    search: string;
     handleChangeGifsInContext: (search: Gif[]) => void;
     handleChangeResultInContext: (newResult: number) => void;
+    handleChangeSearchInContext: (newSearch: string) => void
 }
 
 // Hooks 

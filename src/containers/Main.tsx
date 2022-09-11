@@ -1,13 +1,13 @@
 import ContentList from '@components/ContentList';
-import { useGiphy } from '@hooks/index';
+import { useGiphySWR } from '@hooks/index';
 import { GifHook } from '../types';
 
 const Main = () => {
-  const { gifs }:GifHook = useGiphy();
+  const { gifs }: GifHook = useGiphySWR();
 
   return (
       <>
-        {gifs !== undefined && gifs.length !== 0 ?
+        {gifs !== undefined ?
           <ContentList content={gifs} />
           : <p className='text-white text-center'>Search a gif</p>
         }

@@ -7,6 +7,8 @@ import {
 export const context = createContext<AppState>({
     gifs: [] as Gif[],
     result: 0,
+    search: "",
     handleChangeGifsInContext: () => {},
-    handleChangeResultInContext: () => {}
+    handleChangeResultInContext: () => {},
+    handleChangeSearchInContext: () => {}
 });

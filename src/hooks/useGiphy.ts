@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, RefObject } from 'react';
+import useSWR from 'swr';
 import { useGlobalContext } from '@hooks/index';
 import { AppState } from '../types';
 import api from '@api';

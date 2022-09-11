@@ -1,10 +1,18 @@
 import { useRef } from "react";
-import { useGiphy } from "@hooks/index";
+import { useGiphy, useGiphySWR } from "@hooks/index";
 import { ReactComponent as SearchIcon } from "@assets/search-icon.svg";
 
 const Searcher = () => {
   const gifRef = useRef<HTMLInputElement>(null);
-  const { handleChangeGifs } = useGiphy(gifRef);
+  const { mutateGifs } = useGiphySWR();
+
+  const handleSearch = () => {
+    const gif = gifRef.current?.value;
+    mutateGifs(gif);
+    if (gifRef.current){
+      gifRef.current.value = ""
+    };
+  };
 
   return (
     <div className="flex justify-center items-center h-1/2 py-3">
@@ -16,7 +24,7 @@ const Searcher = () => {
       />
       <button
         className="bg-purple-500 h-full p-3 rounded-r-lg"
-        onClick={handleChangeGifs}
+        onClick={handleSearch}
       >
         <SearchIcon className="w-full h-full"/>
       </button>

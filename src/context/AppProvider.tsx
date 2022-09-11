@@ -6,6 +6,7 @@ const AppProvider: FC<ChildrenProps> = ({ children }) => {
     const { Provider } = context;
     const [gifs, setGifs] = useState<Gif[]>()
     const [result, setResult] = useState<number>(0);
+    const [search, setSearch] = useState<string>("marvel");
 
     const handleChangeGifsInContext = (newGifs: Gif[]) => {
         setGifs(newGifs);
@@ -14,9 +15,13 @@ const AppProvider: FC<ChildrenProps> = ({ children }) => {
     const handleChangeResultInContext = (newResult: number) => {
         setResult(newResult);
     };
+
+    const handleChangeSearchInContext = (newSearch: string) => {
+        setSearch(newSearch);
+    };
     
     return (
-        <Provider value={{ gifs, result, handleChangeGifsInContext, handleChangeResultInContext }}>
+        <Provider value={{ gifs, result, search, handleChangeSearchInContext, handleChangeGifsInContext, handleChangeResultInContext }}>
         {children}
         </Provider>
     );
