@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import useSWR from 'swr';
 import { useGlobalContext } from '@hooks/index';
 import { AppState } from '../types';
@@ -13,6 +14,11 @@ export const useGiphySWR = () => {
     }: AppState = useGlobalContext();
 
     const { data, error } = useSWR(search !== "" ? [`marvel&offset=${page}`, `${search}&offset=${page}`] : null);
+
+    useEffect(() => {
+        handleChangeResultInContext(data?.data?.pagination?.total_count || 0);
+        handleChangeCountInContext(data?.data?.pagination?.count || 0);
+    }, []);
 
     const mutateGifs = (searchQuery: string) => {
         handleChangeSearchInContext(searchQuery)
