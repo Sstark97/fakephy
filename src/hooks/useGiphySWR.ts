@@ -7,10 +7,12 @@ export const useGiphySWR = () => {
     const {
         search,
         page,
+        maxPage,
         handleChangeSearchInContext,
         handleChangePageInContext,
         handleChangeResultInContext,
-        handleChangeCountInContext
+        handleChangeCountInContext,
+        handleChangeMaxPageInContext,
     }: AppState = useGlobalContext();
 
     const { data, error } = useSWR(search !== "" ? [`marvel&offset=${page}`, `${search}&offset=${page}`] : null);
@@ -18,6 +20,7 @@ export const useGiphySWR = () => {
     useEffect(() => {
         handleChangeResultInContext(data?.data?.pagination?.total_count || 0);
         handleChangeCountInContext(data?.data?.pagination?.count || 0);
+        handleChangeMaxPageInContext(Math.trunc(data?.data?.pagination?.total_count / data?.data?.pagination?.count )|| 0);
     }, []);
 
     const mutateGifs = (searchQuery: string) => {
@@ -25,6 +28,7 @@ export const useGiphySWR = () => {
         handleChangePageInContext(0)
         handleChangeResultInContext(data?.data?.pagination?.total_count || 0);
         handleChangeCountInContext(data?.data?.pagination?.count || 0);
+        handleChangeMaxPageInContext(Math.trunc(data?.data?.pagination?.total_count / data?.data?.pagination?.count) || 0);
     }
 
     const mutatePage = (newPage: number) => {
@@ -37,6 +41,7 @@ export const useGiphySWR = () => {
         isLoading: !error && !data,
         isError: error,
         page,
+        maxPage,
         count: data?.data?.pagination?.count,
         mutateGifs,
         mutatePage,

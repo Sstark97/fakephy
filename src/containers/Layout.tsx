@@ -7,7 +7,7 @@ import { ChildrenProps } from "../types";
 const Layout: FC<ChildrenProps> = ({ children }) => {
   return (
     <AppProvider>
-      <div className=" container mx-auto h-full bg-neutral-900">
+      <div className=" container mx-auto h-full">
         <header className="h-1/5 flex flex-col">
           <Banner />
           <Searcher />
