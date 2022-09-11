@@ -3,23 +3,36 @@ import { context } from "./context";
 import { ChildrenProps, Gif } from "../types";
 
 const AppProvider: FC<ChildrenProps> = ({ children }) => {
-    const { Provider } = context;
-    const [gifs, setGifs] = useState<Gif[]>()
-    const [result, setResult] = useState<number>(0);
+  const { Provider } = context;
+  const [result, setResult] = useState<number>(0);
+  const [count, setCount] = useState<number>(0);
+  const [page, setPage] = useState<number>(0);
+  const [search, setSearch] = useState<string>("marvel");
 
-    const handleChangeGifsInContext = (newGifs: Gif[]) => {
-        setGifs(newGifs);
-    };
+  const handleChangeResultInContext = (newResult: number) => setResult(newResult);
 
-    const handleChangeResultInContext = (newResult: number) => {
-        setResult(newResult);
-    };
-    
-    return (
-        <Provider value={{ gifs, result, handleChangeGifsInContext, handleChangeResultInContext }}>
-        {children}
-        </Provider>
-    );
+  const handleChangeSearchInContext = (newSearch: string) => setSearch(newSearch);
+
+  const handleChangePageInContext = (newPage: number) => setPage(newPage);
+
+  const handleChangeCountInContext = (newCount: number) => setCount(newCount);
+
+  return (
+    <Provider
+      value={{
+        result,
+        search,
+        page,
+        count,
+        handleChangeSearchInContext,
+        handleChangeResultInContext,
+        handleChangePageInContext,
+        handleChangeCountInContext,
+      }}
+    >
+      {children}
+    </Provider>
+  );
 };
 
 export default AppProvider;

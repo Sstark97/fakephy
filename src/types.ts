@@ -2,10 +2,14 @@ import { ReactNode } from "react";
 
 // Context
 export interface AppState {
-    gifs: Gif[] | undefined;
     result: number;
-    handleChangeGifsInContext: (search: Gif[]) => void;
+    search: string;
+    page: number;
+    count: number;
     handleChangeResultInContext: (newResult: number) => void;
+    handleChangeSearchInContext: (newSearch: string) => void;
+    handleChangePageInContext: (newPage: number) => void;
+    handleChangeCountInContext: (newCount: number) => void;
 }
 
 // Hooks 
