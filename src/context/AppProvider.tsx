@@ -1,33 +1,31 @@
-import { useState, useEffect, FC } from "react";
+import { useReducer, FC } from "react";
 import { context } from "./context";
-import { ChildrenProps, Gif } from "../types";
+import { reducer, giveMyInitialState } from "./reducer";
+import { ChildrenProps } from "../types";
 
 const AppProvider: FC<ChildrenProps> = ({ children }) => {
   const { Provider } = context;
-  const [result, setResult] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
-  const [page, setPage] = useState<number>(0);
-  const [maxPage, setMaxPage] = useState<number>(0);
-  const [search, setSearch] = useState<string>("marvel");
+  const [state, dispatch] = useReducer(reducer, giveMyInitialState());
 
-  const handleChangeResultInContext = (newResult: number) => setResult(newResult);
+  const handleChangeResultInContext = (newResult: number) =>
+    dispatch({ type: "RESULT", payload: { ...state, result: newResult } });
 
-  const handleChangeSearchInContext = (newSearch: string) => setSearch(newSearch);
+  const handleChangeSearchInContext = (newSearch: string) =>
+    dispatch({ type: "SEARCH", payload: { ...state, search: newSearch } });
 
-  const handleChangePageInContext = (newPage: number) => setPage(newPage);
+  const handleChangePageInContext = (newPage: number) =>
+    dispatch({ type: "PAGE", payload: { ...state, page: newPage } });
 
-  const handleChangeCountInContext = (newCount: number) => setCount(newCount);
+  const handleChangeCountInContext = (newCount: number) =>
+    dispatch({ type: "COUNT", payload: { ...state, count: newCount } });
 
-  const handleChangeMaxPageInContext = (newMaxPage: number) => setMaxPage(newMaxPage);
+  const handleChangeMaxPageInContext = (newMaxPage: number) =>
+    dispatch({ type: "MAX_PAGE", payload: { ...state, maxPage: newMaxPage } });
 
   return (
     <Provider
       value={{
-        result,
-        search,
-        page,
-        count,
-        maxPage,
+        ...state,
         handleChangeSearchInContext,
         handleChangeResultInContext,
         handleChangePageInContext,
