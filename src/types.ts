@@ -1,12 +1,33 @@
 import { ReactNode } from "react";
 
-// Context
-export interface AppState {
+// Reducer
+export interface InitialState {
     result: number;
     search: string;
     page: number;
     count: number;
     maxPage: number;
+};
+
+export interface ReducerAction {
+    type: string,
+    payload?: InitialState
+};
+
+export interface ReducerObject {
+    [key: string]: (state: InitialState, action: ReducerAction) => InitialState,
+}
+
+export enum ActionTypes {
+    RESULT = "RESULT",
+    SEARCH = "SEARCH",
+    PAGE = "PAGE",
+    COUNT = "COUNT",
+    MAX_PAGE = "MAX_PAGE",
+};
+
+// Context
+export interface AppState extends Required<InitialState> {
     handleChangeResultInContext: (newResult: number) => void;
     handleChangeSearchInContext: (newSearch: string) => void;
     handleChangePageInContext: (newPage: number) => void;

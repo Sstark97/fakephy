@@ -1,8 +1,5 @@
 import { createContext } from "react";
-import {
-    AppState,
-    Gif
-} from "../types";
+import { AppState } from "../types";
 
 export const context = createContext<AppState>({
     result: 0,
